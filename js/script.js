@@ -35,19 +35,33 @@ function displayResult(argComputerMove, argPlayerMove){
   }
 }
 
-// Losowanie ruchu komputera
-let randomNumber = Math.floor(Math.random() * 3 + 1);
-console.log('Wylosowana liczba to: ' + randomNumber);
+// Główna funkcja gry
+function playGame(playerInput){
+  clearMessages();
+  
+  // Losowanie ruchu komputera
+  let randomNumber = Math.floor(Math.random() * 3 + 1);
+  console.log('Wylosowana liczba to: ' + randomNumber);
 
-let computerMove = getMoveName(randomNumber);
-printMessage('Mój ruch to: ' + computerMove);
+  let computerMove = getMoveName(randomNumber);
+  
+  // Ruch gracza
+  console.log('Gracz wybrał: ' + playerInput);
+  let playerMove = getMoveName(playerInput);
+  
+  // Wyświetlenie wyniku
+  displayResult(computerMove, playerMove);
+}
 
-// Ruch gracza
-let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-console.log('Gracz wpisał: ' + playerInput);
+// Obsługa guzików
+document.getElementById('play-rock').addEventListener('click', function(){
+  playGame(1);
+});
 
-let playerMove = getMoveName(playerInput);
-printMessage('Twój ruch to: ' + playerMove);
+document.getElementById('play-paper').addEventListener('click', function(){
+  playGame(2);
+});
 
-// Wyświetlenie wyniku
-displayResult(computerMove, playerMove);
+document.getElementById('play-scissors').addEventListener('click', function(){
+  playGame(3);
+});
